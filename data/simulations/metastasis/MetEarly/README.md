@@ -1,0 +1,1 @@
+Metastasis grown from one internal node (1/4 cells): no catastrofic events at first cell division
