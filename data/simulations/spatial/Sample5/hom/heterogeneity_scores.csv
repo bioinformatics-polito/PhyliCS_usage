@@ -1,0 +1,17 @@
+samples	het_score
+['Sample3', 'Sample2', 'Sample4', 'Sample1', 'Sample0']	0.17925513097734969
+['Sample3+Sample2+Sample4+Sample0', 'Sample1']	0.166242847113637
+['Sample3+Sample2+Sample4+Sample1', 'Sample0']	0.10583921093796125
+['Sample2+Sample4+Sample1+Sample0', 'Sample3']	0.022646103854906226
+['Sample3+Sample2+Sample1+Sample0', 'Sample4']	0.02427863111320779
+['Sample2', 'Sample3+Sample4+Sample1+Sample0']	0.12373994171999943
+['Sample3+Sample1', 'Sample2+Sample4+Sample0']	0.11326846267438673
+['Sample3+Sample2+Sample1', 'Sample4+Sample0']	0.11384361086024324
+['Sample3+Sample2', 'Sample4+Sample1+Sample0']	0.0923240881274456
+['Sample3+Sample1+Sample0', 'Sample2+Sample4']	0.08916219896976445
+['Sample2+Sample4+Sample1', 'Sample3+Sample0']	0.10975914121035919
+['Sample3+Sample2+Sample0', 'Sample4+Sample1']	0.11139671859689863
+['Sample3+Sample2+Sample4', 'Sample1+Sample0']	0.09671135098076886
+['Sample2+Sample1', 'Sample3+Sample4+Sample0']	0.14686383965917452
+['Sample3+Sample4', 'Sample2+Sample1+Sample0']	0.05535604309708134
+['Sample2+Sample0', 'Sample3+Sample4+Sample1']	0.10029313163723327
