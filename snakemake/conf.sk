@@ -1,1 +1,20 @@
-/mnt/trcanmed/snaketree/prj/scDNA/dataset/phylics/MDAMB231/conf.sk
+import os
+def find_prj_root(path=os.getcwd()):
+    if os.path.isfile(os.path.join(path,".PRJ_ROOT")):
+        return path
+    else:
+        if path:
+            return find_prj_root(os.path.dirname(path))
+        else:
+            raise Exception("Can not find the PRJ_ROOT directory")
+
+PRJ_ROOT=find_prj_root()
+ROOT = os.path.dirname(PRJ_ROOT)
+SRC_DIR=PRJ_ROOT+'/local/src'
+BIN_DIR=PRJ_ROOT+'/local/bin'
+DATASET_DIR=PRJ_ROOT+'/dataset/phylics/MDAMB231'
+
+GENOME="GrCh38"
+BINNING="variable_500000_101_bwa"
+
+EXP = ["EX1", "EX2"]
