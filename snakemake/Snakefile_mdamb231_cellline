@@ -1,1 +1,73 @@
-/mnt/trcanmed/snaketree/prj/scDNA/dataset/phylics/MDAMB231/Snakefile
+include: "conf.sk"
+
+DATA_DIR = "{exp}/data/"
+LOGS_DIR = "{exp}/logs/"
+BENCHMARKS_DIR = "{exp}/benchmarks/"
+
+def get_beds(wildcards):
+    import glob
+    fastq=glob.glob(DATASET_DIR+"/"+ wildcards.exp + "/data/fastq/*.fastq")
+    res=[x.replace("fastq", "bed") for x in fastq]
+    return res
+
+rule all:
+    input: expand(DATA_DIR + "cnvs/SegCopy", exp=EXP)
+
+#rule fastq_dump:
+#   input: DATA_DIR + "SRR_Acc_List.txt"
+#   output: DATA_DIR + "fastq/""
+#   shell:
+#       """
+#        cat {input} | xargs -I {} fasterq-dump --outdir {output} --split-files {}
+#       """
+#
+
+rule align:
+    input: DATA_DIR + "fastq/{cell}.fastq"
+    output: DATA_DIR + "bam/{cell}.bam"
+    params: outdir = DATA_DIR + "bam/", 
+            cores=4, 
+            ref="/mnt/trcanmed/snaketree/task/annotations/dataset/gnomad/GRCh38.d1.vd1.fa"
+    log: LOGS_DIR + "allign.{cell}.log"
+    benchmark: BENCHMARKS_DIR + "allign.{cell}.tsv"
+    shell:
+        """
+        if [ ! -d {params.outdir} ]; then
+            mkdir -p {params.outdir}
+        fi
+
+        bwa mem -t {params.cores} -K 100000000 -Y {params.ref} {input} 2> {log} | samtools sort -o {params.outdir}/{wildcards.cell}_tmp.bam 
+        samtools index {params.outdir}/{wildcards.cell}_tmp.bam 
+        samtools view -b {params.outdir}/{wildcards.cell}_tmp.bam > {output}
+        samtools index {output}
+        rm -rf {params.outdir}/{wildcards.cell}_tmp.bam {params.outdir}/{wildcards.cell}_tmp.bam.bai
+        """
+# -h, prints the sam header
+# -q $Q, filters out reads with MAPQ < $Q
+# -F 3328, filters out not primary alignments (256), PCR duplicates (1024) and suppl alignments (256) 
+rule bamToBed:
+    input: DATA_DIR + "bam/{cell}.bam"
+    output: DATA_DIR + "bed/{cell}.bed"
+    params: outdir=DATA_DIR + "bed/",mapq=20
+    log: LOGS_DIR + "bamToBed.{cell}.log"
+    benchmark: BENCHMARKS_DIR + "bamToBed.{cell}.tsv"
+    shell:
+        """
+        if [ ! -d {params.outdir} ]; then
+            mkdir -p {params.outdir}
+        fi
+
+        samtools view -bh -F 1280 -q {params.mapq} {input} | bedtools bamtobed -i stdin 2> {log} 1> {output}
+        """
+
+rule ginkgo:
+    input: get_beds
+    output: DATA_DIR + "cnvs/SegCopy"
+    params: indir=DATA_DIR + "bed/", genome=GENOME, binning=BINNING
+    log: LOGS_DIR + "ginkgo.log"
+    benchmark: BENCHMARKS_DIR + "ginkgo.tsv"
+    shell:
+        """
+            phylics --run --run_cnvs --input_dirs {wildcards.exp}:{input} --genome {params.genome} --binning {params.binning} --verbose 2> {log}
+            
+        """
