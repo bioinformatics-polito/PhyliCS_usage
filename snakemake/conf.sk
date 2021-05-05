@@ -17,4 +17,4 @@ DATASET_DIR=PRJ_ROOT+'/dataset/phylics/MDAMB231'
 GENOME="GrCh38"
 BINNING="variable_500000_101_bwa"
 
-EXP = ["EX1", "EX2"]
+EXP = ["EX1", "EX2", "Parental"]
