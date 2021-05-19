@@ -73,12 +73,12 @@ rule gzip_bed:
 rule ginkgo:
     input: get_beds
     output: DATA_DIR + "cnvs/SegCopy"
-    params: indir=DATA_DIR + "bed/", genome=GENOME, binning=BINNING,outdir=DATA_DIR + "cnvs/"
+    params: indir=DATA_DIR + "bed/", genome=GENOME, binning=BINNING,outdir=DATA_DIR + "cnvs/", tool=RUN_GINKGO
     log: LOGS_DIR + "ginkgo.log"
     benchmark: BENCHMARKS_DIR + "ginkgo.tsv"
     shell:
         """
-            phylics --run --run_cnvs --input_dirs {wildcards.exp}:{params.indir} --genome {params.genome} --binning {params.binning} --verbose 2> {log}
+            python {params.tool} --run --run_cnvs --input_dirs {wildcards.exp}:{params.indir} --genome {params.genome} --binning {params.binning} --verbose 2> {log}
             mv {params.indir}/Seg* {params.indir}/results.txt {params.outdir}
 
         """

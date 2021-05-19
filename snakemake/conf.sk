@@ -13,8 +13,17 @@ ROOT = os.path.dirname(PRJ_ROOT)
 SRC_DIR=PRJ_ROOT+'/local/src'
 BIN_DIR=PRJ_ROOT+'/local/bin'
 DATASET_DIR=PRJ_ROOT+'/dataset/phylics/MDAMB231'
+BASE_DIR=""
+
 
 GENOME="GrCh38"
 BINNING="variable_500000_101_bwa"
+RUN_GINKGO = BASE_DIR+"run_gingko/bin/phylics"
 
 EXP = ["EX1", "EX2", "Parental"]
+
+PROPORTIONS={"10":0.1, "20":0.2, "30":0.3, "40": 0.4, "50":0.5, "60":0.6, "70":0.7, "80":0.8, "90":0.9}
+EX = ["EX1", "EX2"]
+
+DOWNSAMPLE=SRC_DIR + "/downsample.py"
+SHSCORE_DOWNSAMPLE=SRC_DIR + "/shscore_downsample.py"
