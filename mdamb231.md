@@ -1,4 +1,4 @@
-# MDA-MB-231 Cell libe analysis
+# MDA-MB-231 Cell line analysis
 
 Here you find the code to reproduce the analysis on the MDA-MB-231 cell line and on the two daughter cell lines, MDA-MB-231-EX1 and MDA-MB-231-EX2, obtained from the clonal expansion of two cells. Here we present only PhyliCS application, while you can find the pipeline to download and allign the sequencing reads and to call the scCNA events at [Snakefile](https://github.com/bioinformatics-polito/PhyliCS_usage/blob/main/snakemake/Snakefile_mdamb231_cellline). We remind, once again, data MDA-MB-231 processed data can't be deposited at this repository due to IRB protocol. Raw datasets are deposited under BioProject PRJNA629885.
 
