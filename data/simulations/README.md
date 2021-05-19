@@ -4,9 +4,9 @@
 Here you find the code you need to compute the statistics on SHscores computed on simulated datasets. 
 SHscores have been precomputed because the computation, here, would take too much time. 
 
-At [README_SHSCORE_MRCA.md](https://raw.githubusercontent.com/bioinformatics-polito/PhyliCS_usage/main/data/simulations/README_SHSCORE_MRCA.md) you can find the code to reproduce the results shown in the section **Experiment 2: SHscore and evolutionary distance** of the paper. 
+At [README_SHSCORE_MRCA.md](https://github.com/bioinformatics-polito/PhyliCS_usage/blob/main/data/simulations/README_SHSCORE_MRCA.md) you can find the code to reproduce the results shown in the section **Experiment 2: SHscore and evolutionary distance** of the paper. 
 
-At [README_SHSCORE_CNFEATURES.md](https://raw.githubusercontent.com/bioinformatics-polito/PhyliCS_usage/main/data/simulations/README_SHSCORE_CNFEATURES.md) you can find the code to reproduce the results shown in the section **Experiment 1: SHscore on synthetic data**, subsection **SHscore indipendence from CNA size and gained copy number** of the paper
+At [README_SHSCORE_CNFEATURES.md](https://github.com/bioinformatics-polito/PhyliCS_usage/blob/main/data/simulations/README_SHSCORE_CNFEATURES.md) you can find the code to reproduce the results shown in the section **Experiment 1: SHscore on synthetic data**, subsection **SHscore indipendence from CNA size and gained copy number** of the paper
 
 You may refer to the other notebooks in the current repository or to the documentation at the official [PhyliCS repository](https://github.com/bioinformatics-polito/PhyliCS) to learn how to compute the SHscore.
 
